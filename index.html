@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const serial = params.get("serial");
+
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbyRCjQR5sG0D2uabVLdOQflBv6rV_lnGUN2C_cy8am3RwlaIeb-doylbPYbzrogGgYAWg/exec";
+
+    if (serial) {
+      window.location.href = `${scriptUrl}?serial=${encodeURIComponent(serial)}`;
+    } else {
+      document.body.innerHTML = "<h2>Missing Product Serial</h2>";
+    }
+  </script>
+</head>
+<body>
+  Redirecting...
+</body>
+</html>
