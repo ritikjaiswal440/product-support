@@ -2,23 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const serial = params.get("serial");
+  <title>Service Request Portal</title>
 
-    const scriptUrl = "https://script.google.com/macros/s/AKfycby476ecukEizfce1mDME-1Y8h1y0oPqWAzbesy_fB5-0QmwXXJ_cHlEBsXvdGGXHdIEgw/exec";
-
-    if (serial) {
-      window.location.href = `${scriptUrl}?serial=${encodeURIComponent(serial)}`;
-    } else {
-      document.body.innerHTML = "<h2>Missing Product Serial</h2>";
+  <style>
+    *{
+      box-sizing:border-box;
     }
-  </script>
+
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#f4f6f9;
+      font-family:Arial,sans-serif;
+    }
+
+    .card{
+      width:90%;
+      max-width:500px;
+      background:#fff;
+      padding:40px;
+      border-radius:16px;
+      box-shadow:0 2px 12px rgba(0,0,0,.12);
+      text-align:center;
+    }
+
+    h1{
+      margin-bottom:10px;
+      color:#222;
+    }
+
+    p{
+      color:#666;
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+
+    .button{
+      display:inline-block;
+      text-decoration:none;
+      background:#111;
+      color:#fff;
+      padding:12px 20px;
+      border-radius:8px;
+    }
+  </style>
 </head>
 <body>
-  Redirecting...
+
+  <div class="card">
+    <h1>Service Request Portal</h1>
+
+    <p>
+      Welcome to the Service Request Portal.
+      Please use the service request link shared with you by our support team.
+    </p>
+
+    <a class="button" href="mailto:support@yourcompany.com">
+      Contact Support
+    </a>
+  </div>
+
 </body>
 </html>
