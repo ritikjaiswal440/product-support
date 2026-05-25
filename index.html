@@ -9,7 +9,7 @@
     const params = new URLSearchParams(window.location.search);
     const serial = params.get("serial");
 
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbyRCjQR5sG0D2uabVLdOQflBv6rV_lnGUN2C_cy8am3RwlaIeb-doylbPYbzrogGgYAWg/exec";
+    const scriptUrl = "https://script.google.com/macros/s/AKfycby476ecukEizfce1mDME-1Y8h1y0oPqWAzbesy_fB5-0QmwXXJ_cHlEBsXvdGGXHdIEgw/exec";
 
     if (serial) {
       window.location.href = `${scriptUrl}?serial=${encodeURIComponent(serial)}`;
