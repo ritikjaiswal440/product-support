@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Secure Service Portal</title>
 
   <style>
@@ -21,34 +21,18 @@
       align-items:center;
       justify-content:center;
       padding:20px;
-      color:#111827;
     }
 
     .card{
       width:100%;
-      max-width:430px;
-      background:#ffffff;
+      max-width:420px;
+      background:#fff;
       border-radius:20px;
-      padding:42px 32px;
+      padding:40px 30px;
       text-align:center;
       box-shadow:
         0 10px 30px rgba(0,0,0,0.08),
         0 4px 12px rgba(0,0,0,0.04);
-      animation:fadeIn .4s ease;
-    }
-
-    .logo{
-      width:72px;
-      height:72px;
-      margin:0 auto 24px;
-      border-radius:18px;
-      background:linear-gradient(135deg,#2563eb,#1d4ed8);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:30px;
-      font-weight:bold;
     }
 
     .spinner{
@@ -62,8 +46,8 @@
     }
 
     .error-icon{
-      width:72px;
-      height:72px;
+      width:70px;
+      height:70px;
       border-radius:50%;
       background:#fee2e2;
       color:#dc2626;
@@ -83,53 +67,30 @@
 
     p{
       color:#6b7280;
+      line-height:1.6;
       font-size:15px;
-      line-height:1.7;
     }
 
     .company{
       margin-top:18px;
       background:#eff6ff;
       color:#1d4ed8;
-      padding:12px 16px;
+      padding:12px;
       border-radius:12px;
       font-size:14px;
       font-weight:600;
     }
 
     .footer{
-      margin-top:24px;
-      color:#9ca3af;
+      margin-top:22px;
       font-size:12px;
+      color:#9ca3af;
     }
 
     @keyframes spin{
       to{
         transform:rotate(360deg);
       }
-    }
-
-    @keyframes fadeIn{
-      from{
-        opacity:0;
-        transform:translateY(10px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    @media(max-width:480px){
-
-      .card{
-        padding:34px 24px;
-      }
-
-      h1{
-        font-size:22px;
-      }
-
     }
 
   </style>
@@ -158,18 +119,18 @@
     (function(){
 
       /*
-      ==================================================
-      GOOGLE APPS SCRIPT URL
-      ==================================================
+      ============================================
+      APPS SCRIPT URL
+      ============================================
       */
 
       const APPS_SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycby476ecukEizfce1mDME-1Y8h1y0oPqWAzbesy_fB5-0QmwXXJ_cHlEBsXvdGGXHdIEgw/exec";
 
       /*
-      ==================================================
-      APPROVED CLIENTS
-      ==================================================
+      ============================================
+      VALID CLIENTS
+      ============================================
       */
 
       const CLIENTS = {
@@ -183,33 +144,34 @@
       };
 
       /*
-      ==================================================
+      ============================================
       GET PARAM
-      ==================================================
+      ============================================
       */
 
       const params =
         new URLSearchParams(window.location.search);
 
-      const client =
+      let client =
         params.get("client");
 
       /*
-      ==================================================
-      VALIDATION
-      ==================================================
+      ============================================
+      CLEAN INPUT
+      ============================================
       */
 
-      function isValid(value){
+      if(client){
 
-        return /^[A-Z0-9]{6,10}$/i.test(value);
+        client =
+          client.trim().toUpperCase();
 
       }
 
       /*
-      ==================================================
-      ERROR SCREEN
-      ==================================================
+      ============================================
+      VALIDATION
+      ============================================
       */
 
       function showError(){
@@ -233,12 +195,12 @@
       }
 
       /*
-      ==================================================
+      ============================================
       INVALID PARAM
-      ==================================================
+      ============================================
       */
 
-      if(!client || !isValid(client)){
+      if(!client){
 
         showError();
         return;
@@ -246,9 +208,9 @@
       }
 
       /*
-      ==================================================
-      CHECK CLIENT EXISTS
-      ==================================================
+      ============================================
+      CHECK CLIENT
+      ============================================
       */
 
       const company =
@@ -262,9 +224,9 @@
       }
 
       /*
-      ==================================================
-      SHOW COMPANY NAME
-      ==================================================
+      ============================================
+      UPDATE UI
+      ============================================
       */
 
       document.getElementById("app").innerHTML = `
@@ -288,18 +250,18 @@
       `;
 
       /*
-      ==================================================
-      BUILD REDIRECT URL
-      ==================================================
+      ============================================
+      REDIRECT URL
+      ============================================
       */
 
       const redirectURL =
         `${APPS_SCRIPT_URL}?ref=${encodeURIComponent(client)}`;
 
       /*
-      ==================================================
+      ============================================
       REDIRECT
-      ==================================================
+      ============================================
       */
 
       setTimeout(() => {
